@@ -11,7 +11,7 @@ import './Messenger.css';
 const Messenger = (props) => {
 
   return (
-    <Card className="Messenger" title={props.interlocutor.displayName}>
+    <Card className="Messenger" bordered={false} title={props.interlocutor.displayName}>
       <MessagesStory/>
       <MessageEditor/>
     </Card>

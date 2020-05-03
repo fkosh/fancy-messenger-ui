@@ -16,10 +16,6 @@ const App = () => {
   return (
     <div className="App">
       <div className="layout">
-        <div>
-          <img width="80px" src="logo.png"/>
-          <h1><span style={{'color': 'red'}}>F</span>ancy <span style={{'color': 'red'}}>M</span>essenger</h1>
-        </div>
         <UsersList/>
         <Messenger interlocutor={interlocutor}/>
       </div>

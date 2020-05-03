@@ -2,20 +2,23 @@
     width: 100%;
 }
 
-.Messenger > .ant-card-body {
+.Messenger>.ant-card-body {
     display: grid;
-
     padding: 0;
-
     grid-template-rows: minmax(200px, 400px) auto;
 }
 
-.Messenger > .ant-card-body > :nth-child(1) {
-    grid-row: 1;
+.Messenger>.ant-card-head {
+    margin-bottom: 0;
+    border-bottom: 1px solid #f0f0f0;
 }
 
-.Messenger > .ant-card-body > :nth-child(2) {
-    grid-row: 2;
+.Messenger>.ant-card-body> :nth-child(1) {
+    grid-row: 1;
     background: #fafafa;
+}
+
+.Messenger>.ant-card-body> :nth-child(2) {
+    grid-row: 2;
     padding: 16px;
 }

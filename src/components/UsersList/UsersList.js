@@ -6,6 +6,7 @@ import { Card, Menu } from 'antd';
 import { users } from '../../api/users';
 
 import User from '../User/User';
+import UserMenu from '../UserMenu/UserMenu';
 
 import './UsersList.css';
 
@@ -33,12 +34,19 @@ const UsersList = () => {
     console.log('click ', e);
   };
 
+  const logo = (
+    <div>
+      <img width="40px" src="logo-inverted.png" />
+      <h3><span className="capital">F</span>ancy <span className="capital">M</span>essenger</h3>
+    </div>
+  );
+
   return (
-    <Card className="UsersList" title="Пользователи">
-      <Menu onClick={handleClick} mode="inline">
-        {users.map((user) => <Menu.Item key={user.id}> <User user={user} /> </Menu.Item> )}
+    <Card className="UsersList" bordered={false} title={logo}>
+      <Menu onClick={handleClick} theme="dark" mode="inline">
+        {users.map((user) => <Menu.Item key={user.id}> <User user={user} /> </Menu.Item>)}
       </Menu>
-      <User user={users[0]} />
+      <UserMenu user={users[0]} />
     </Card>
   );
 };
