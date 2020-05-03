@@ -1,0 +1,31 @@
+@import '../../../node_modules/antd/dist/antd.css';
+
+#root, .App, .layout {
+    height: 100%;
+}
+
+.App {
+    background-color: rgb(240, 242, 245);
+}
+
+.layout {
+
+    margin: auto;
+
+    display: grid;
+    justify-items: center;
+
+    grid-gap: 10px;
+    grid-template-columns: minmax(200px, 3fr) 2fr 5fr minmax(200px, 3fr);
+    grid-template-rows: 1fr 10fr 4fr 1fr;
+}
+
+.layout :nth-child(1) {
+    grid-column: 2;
+    grid-row: 2 / 4;
+}
+
+.layout :nth-child(2) {
+    grid-column: 3;
+    grid-row: 2 / 4;
+}

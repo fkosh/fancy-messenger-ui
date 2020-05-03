@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "displayName": "Ivan Ivanov",
+        "isOnline": true
+    },
+    {
+        "id": 2,
+        "displayName": "Petr Petrov",
+        "isOnline": true
+    },
+    {
+        "id": 3,
+        "displayName": "Vasya Vasiliev",
+        "isOnline": false
+    }
+]
