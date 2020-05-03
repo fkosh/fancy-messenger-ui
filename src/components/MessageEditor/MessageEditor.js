@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Form, Input, InputNumber, Button } from 'antd';
+import { Form, Button, Input } from 'antd';
+
+import { SendOutlined } from '@ant-design/icons';
 
 import './MessageEditor.css';
+
+const { TextArea } = Input;
 
 const validateMessages = {
   required: '${label} is required!',
@@ -21,13 +25,27 @@ const MessageEditor = () => {
     console.log(values);
   };
 
+  const onChange = values => {
+    console.log(values);
+  };
+
+  const onSubmit = values => {
+    console.log(values);
+  };
+
+  const submitting = false;
+
+  const value = "test";
+
   return (
-    <Form layout="inline" name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-      <Form.Item name={['user', 'introduction']}>
-        <Input.TextArea />
-      </Form.Item>
+    <Form className="MessageEdior" layout="inline" name="add-message" onFinish={onFinish} validateMessages={validateMessages}>
       <Form.Item>
-        <Button type="primary" htmlType="submit">Отправить</Button>
+        <TextArea autoSize={{ minRows: 2, maxRows: 2 }} onChange={onChange} />
+      </Form.Item>
+      <Form.Item className="MessageEdiorButton">
+        <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
+          <SendOutlined />
+        </Button>
       </Form.Item>
     </Form>
   );

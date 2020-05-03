@@ -1,1 +1,3 @@
-.MessagesStory {}
+.MessagesStory .ant-list-item {
+    border: 0;
+}

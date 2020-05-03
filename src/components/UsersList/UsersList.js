@@ -1,32 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { List, Typography, Divider } from 'antd';
+import { Card, Menu } from 'antd';
+
+import { users } from '../../api/users';
+
+import User from '../User/User';
 
 import './UsersList.css';
 
 const UsersList = () => {
-  const data = [
-    'Racing car sprays burning fuel into crowd.',
-    'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
+
+  const users = [
+    {
+      "id": 1,
+      "displayName": "Ivan Ivanov",
+      "isOnline": true
+    },
+    {
+      "id": 2,
+      "displayName": "Petr Petrov",
+      "isOnline": true
+    },
+    {
+      "id": 3,
+      "displayName": "Vasya Vasiliev",
+      "isOnline": false
+    }
   ];
 
+  const handleClick = e => {
+    console.log('click ', e);
+  };
+
   return (
-    <List
-      size="large"
-      header={<div>Users</div>}
-      bordered
-      dataSource={data}
-      renderItem={item => <List.Item>{item}</List.Item>}
-    />
+    <Card className="UsersList" title="Пользователи">
+      <Menu onClick={handleClick} mode="inline">
+        {users.map((user) => <Menu.Item key={user.id}> <User user={user} /> </Menu.Item> )}
+      </Menu>
+      <User user={users[0]} />
+    </Card>
   );
 };
-
-UsersList.propTypes = {};
-
-UsersList.defaultProps = {};
 
 export default UsersList;

@@ -1,1 +1,10 @@
-.MessageEditor {}
+.MessageEdior {
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+}
+
+.MessageEdiorButton, .MessageEdiorButton div, .MessageEdiorButton button {
+    height: 100%;
+    width: 100%;
+}
