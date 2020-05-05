@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { Card, Divider } from 'antd';
+import { Card } from 'antd';
 
 import MessagesStory from '../MessagesStory/MessagesStory'
 import MessageEditor from '../MessageEditor/MessageEditor'
@@ -17,9 +16,5 @@ const Messenger = (props) => {
     </Card>
   );
 };
-
-Messenger.propTypes = {};
-
-Messenger.defaultProps = {};
 
 export default Messenger;

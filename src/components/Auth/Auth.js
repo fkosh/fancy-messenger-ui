@@ -77,8 +77,4 @@ const Auth = () => {
   );
 };
 
-Auth.propTypes = {};
-
-Auth.defaultProps = {};
-
 export default Auth;

@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { List, Typography, Divider } from 'antd';
+import { List } from 'antd';
 
 import './MessagesStory.css';
 import Message from '../Message/Message';
@@ -47,9 +46,5 @@ const MessagesStory = () => {
     />
   );
 };
-
-MessagesStory.propTypes = {};
-
-MessagesStory.defaultProps = {};
 
 export default MessagesStory;

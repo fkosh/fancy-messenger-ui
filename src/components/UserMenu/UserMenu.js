@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './UserMenu.css';
 
 import { Tooltip, Button, Avatar } from 'antd';
@@ -12,7 +11,7 @@ const UserMenu = (props) => (
     <Avatar
       shape="square"
       style={{ padding: '4px', backgroundColor: 'rgb(240, 242, 245)' }}
-      icon={<Identicon string={props.user.displayName} size={22} />}
+      icon={<Identicon string={props.user.username} size={22} />}
     />
     <span>{props.user.displayName}</span>
     <Tooltip title="Log out">
@@ -20,9 +19,5 @@ const UserMenu = (props) => (
     </Tooltip>
   </div>
 );
-
-UserMenu.propTypes = {};
-
-UserMenu.defaultProps = {};
 
 export default UserMenu;
