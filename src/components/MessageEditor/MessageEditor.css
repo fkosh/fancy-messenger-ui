@@ -1,5 +1,5 @@
-.MessageEdior {
-    display: grid;
+.MessageEditor {
+    display: grid !important; 
 
     grid-template-columns: 1fr auto;
 }

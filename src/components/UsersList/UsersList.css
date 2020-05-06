@@ -1,11 +1,6 @@
-
-
 .UsersList {
     width: 100%;
 }
-
-
-
 
 .UsersList > .ant-card-body {
     display: grid;

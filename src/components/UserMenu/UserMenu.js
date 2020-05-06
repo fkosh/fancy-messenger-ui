@@ -13,7 +13,7 @@ const UserMenu = (props) => (
       style={{ padding: '4px', backgroundColor: 'rgb(240, 242, 245)' }}
       icon={<Identicon string={props.user.username} size={22} />}
     />
-    <span>{props.user.displayName}</span>
+    <span>{props.user.username}</span>
     <Tooltip title="Log out">
       <Button  ghost={true} icon={<LogoutOutlined />} />
     </Tooltip>
