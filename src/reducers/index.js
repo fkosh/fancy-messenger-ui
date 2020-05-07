@@ -3,7 +3,10 @@ import { combineReducers } from 'redux'
 import {
     REQUEST_CONTACTS,
     RECEIVE_CONTACTS,
-    SELECT_CONVERSATION
+
+    SELECT_CONVERSATION,
+    REQUEST_CONVERSATION_MESSAGES,
+    RECEIVE_CONVERSATION_MESSAGES
 } from '../actions'
 
 const contacts = (
@@ -28,9 +31,23 @@ const conversation = (
     switch (action.type) {
         case SELECT_CONVERSATION:
             return Object.assign({}, state, { interlocutorId: action.interlocutorId })
+        case REQUEST_CONVERSATION_MESSAGES:
+            return Object.assign({}, state, { 
+                messages: { 
+                    isFetching: true,
+                    items: [] 
+                }
+             })
+        case RECEIVE_CONVERSATION_MESSAGES:
+            return Object.assign({}, state, {
+                messages: {
+                    isFetching: false,
+                    items: action.messages
+                }
+            })
         default:
             return state
     }
 }
 
-export default combineReducers({contacts, conversation})
+export default combineReducers({ contacts, conversation })

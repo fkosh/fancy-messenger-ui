@@ -1,0 +1,21 @@
+@import '../node_modules/antd/dist/antd.css';
+
+#root {
+    height: 100%;
+
+    background-color: #f0f2f5;
+
+    display: grid;
+    justify-items: center;
+    grid-template-columns: minmax(auto, 1fr) minmax(480px, 800px) minmax(auto, 1fr);
+    grid-template-rows: minmax(auto, 1fr) minmax(360px, 480px) minmax(auto, 1fr);
+}
+
+.App {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.SourceLink {
+
+}

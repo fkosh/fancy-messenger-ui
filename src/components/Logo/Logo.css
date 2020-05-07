@@ -1,0 +1,31 @@
+.Logo.large {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.Logo.medium {
+    font-size: 23px;
+}
+
+.Logo.large .LogoImage {
+    width: 64px;
+}
+
+.Logo.medium .LogoImage {
+    width: 40px;
+
+}
+
+.Logo.default {
+    color: #262626;
+}
+
+.Logo.inverted {
+    color: #b7c1c9;
+}
+
+.Logo > div::first-letter {
+    color: #bd0303;
+    display: inline-block;
+    font-weight: bold;
+}

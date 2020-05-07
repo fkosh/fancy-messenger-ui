@@ -8,7 +8,6 @@ import './App.css'
 
 export const App = ({ contacts, conversation }) => {
   let interlocutor
-
   if (conversation) {
     interlocutor = contacts.items.find(
       contact => contact.id === conversation.interlocutorId

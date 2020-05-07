@@ -1,11 +1,9 @@
-@import '../../../node_modules/antd/dist/antd.css';
-
 #root, .App {
     height: 100%;
 }
 
 html, .App {
-    background-color: rgb(240, 242, 245);
+    background-color: #f0f2f5;
 }
 
 .App {
