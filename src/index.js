@@ -1,27 +1,45 @@
-import ReactDOM from 'react-dom'
-import React from 'react'
+import ReactDOM from 'react-dom';
+import React from 'react';
 
-import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
-import thunkMiddleware from 'redux-thunk'
-import { createLogger } from 'redux-logger'
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
-import App1 from './containers/App1/App1'
-import reducer from './reducers'
-import { fetchContacts } from './actions'
+import { Button } from 'antd';
+import { GithubOutlined } from '@ant-design/icons';
 
-import './index.css'
+import App1 from './containers/App1/App1';
+import { saveState, loadState } from './localStorage';
+import reducer from './reducers';
+
+import './index.css';
 
 const store = createStore(
     reducer,
-    applyMiddleware(thunkMiddleware, createLogger())
-)
+    loadState(),
+    composeWithDevTools(
+        applyMiddleware(thunkMiddleware, createLogger())
+    )
+);
 
-store.dispatch(fetchContacts())
+store.subscribe(() => saveState({
+    currentUser: store.getState().currentUser
+}));
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App1 />
-    </Provider>,
+    <>
+        <Provider store={store}>
+            <App1 />
+        </Provider>
+        <Button
+            className="AppSourceLink"
+            shape="circle"
+            icon={<GithubOutlined />}
+            size="large"
+            type="dashed" ghost
+        />
+    </>,
     document.getElementById('root')
-)
+);

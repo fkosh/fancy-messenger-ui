@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 
 import {
+    RECEIVE_LOGIN_USER,
+
     REQUEST_CONTACTS,
     RECEIVE_CONTACTS,
 
@@ -8,6 +10,19 @@ import {
     REQUEST_CONVERSATION_MESSAGES,
     RECEIVE_CONVERSATION_MESSAGES
 } from '../actions'
+
+const currentUser = (state = { }, action) => {
+    switch (action.type) {
+        case RECEIVE_LOGIN_USER:
+            return Object.assign({}, state, {
+                id: action.user.id,
+                username: action.user.username,
+                accessToken: action.user.accessToken
+            })
+        default:
+            return state
+    }
+}
 
 const contacts = (
     state = { isFetching: false, items: [] }, action
@@ -50,4 +65,4 @@ const conversation = (
     }
 }
 
-export default combineReducers({ contacts, conversation })
+export default combineReducers({ currentUser, contacts, conversation })

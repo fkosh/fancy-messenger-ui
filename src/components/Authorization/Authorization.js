@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Layout, Card, Button, Divider } from 'antd';
+import { Layout, Card, Button, Divider, Typography } from 'antd';
 
 import Logo from '../../components/Logo/Logo';
 import SignIn from '../../components/SignIn/SignIn';
@@ -16,8 +16,8 @@ const Authorization = () => {
     const [signInMode, setSignInMode] = useState(false);
 
     return (
-        <Layout className="Authorization">
-            <Content>          
+        <Layout className="Authorization" style={{backgroundColor: "transparent"}}>
+            <Content>
                 <Logo size="large" inverted={false} />
                 <Card bordered={false}>
                     {signInMode ? <SignIn /> : <SignUp />}

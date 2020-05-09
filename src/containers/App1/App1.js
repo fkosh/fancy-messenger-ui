@@ -1,22 +1,22 @@
-import React from 'react'
+import React from 'react';
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import { Layout } from 'antd'
+import { Layout } from 'antd';
 
-import Authorization from '../../components/Authorization/Authorization'
-import Messenger from '../../components/Messenger/Messenger'
+import Authorization from '../../components/Authorization/Authorization';
+import Messenger1 from '../../components/Messenger1/Messenger1';
 
 import './App1.css';
 
-const App1 = ({ user }) => (
-    <Layout className="App">
-        {user ? <Messenger user={user} /> : <Authorization />}
+const App1 = ({ currentUser }) => (
+    <Layout className="App" style={{ backgroundColor: "transparent" }}>
+        {currentUser.accessToken ? <Messenger1 user={currentUser} /> : <Authorization />}
     </Layout>
-)
+);
 
 const mapStateToProps = state => ({
-    user: state.user
-})
+    currentUser: state.currentUser
+});
 
-export default connect(mapStateToProps)(App1)
+export default connect(mapStateToProps)(App1);

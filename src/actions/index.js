@@ -1,3 +1,59 @@
+export const RECEIVE_LOGIN_USER = 'RECEIVE_LOGIN_USER'
+function receiveLoginUser(json) {
+    return {
+        type: RECEIVE_LOGIN_USER,
+        user: json
+    }
+}
+
+export function fetchUserSignUp(userCredentials) {
+    return function (dispatch) {
+
+        return fetch(
+            `https://localhost:5001/api/sign-up`,
+            {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: userCredentials.username,
+                    password: userCredentials.password
+                })
+            }
+        ).then(
+            response => response.json(),
+            error => console.log('An error occurred.', error)
+        ).then(json => dispatch(receiveLoginUser(json)))
+    }
+}
+
+export function fetchUserSignIn(userCredentials) {
+    return function (dispatch) {
+
+        return fetch(
+            `https://localhost:5001/api/sign-in`,
+            {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: userCredentials.username,
+                    password: userCredentials.password
+                })
+            }
+        ).then(
+            response => response.json(),
+            error => console.log('An error occurred.', error)
+        ).then(json => dispatch(receiveLoginUser(json)))
+    }
+}
+
 export const REQUEST_CONTACTS = 'REQUEST_CONTACTS'
 function requestContacts() {
     return {
@@ -43,7 +99,7 @@ export function selectConversation(interlocutorId) {
 export const REQUEST_CONVERSATION_MESSAGES = 'REQUEST_CONVERSATION_MESSAGES'
 function requestConversationMessages() {
     return {
-        type: REQUEST_CONVERSATION_MESSAGES 
+        type: REQUEST_CONVERSATION_MESSAGES
     }
 }
 
