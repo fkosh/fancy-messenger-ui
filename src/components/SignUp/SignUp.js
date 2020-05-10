@@ -13,6 +13,7 @@ const { Title } = Typography;
 
 const SignUp = ({ onSubmit }) => {
 
+    
     return (
         <>
             <Title level={3} style={{ textAlign: "center", marginBottom: 24 }}>Sign Up</Title>
