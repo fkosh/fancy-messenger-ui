@@ -9,19 +9,24 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     title: {
-        fontFamily: "'Pacifico', cursive"
+        fontFamily: "'Pacifico', cursive",
+        marginLeft: '8px'
     },
     notInverted: {   
-        '& > :first-letter': {
+        '& :first-letter': {
             color: '#bd0303',
             fontWeight: 'bold'
         }, 
         color: '#212121'
     },
     inverted: {
-        color: '#fff'
+        color: '#EFF1F5',
+        '& :first-letter': {
+            color: '#9FADC3',
+            fontWeight: 'bold'
+        }, 
     },
     normalSize: {
         '& > div': {
@@ -44,14 +49,21 @@ const useStyles = makeStyles({
             width: '64px'
         }
     },
-    root: {
-
+    logoOpen: {
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    logoClose: {
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        })
     }
-});
+}));
 
-const Logo = ({ large = false, inverted = false, collapsible = false }) => {
-
-    const [collapsed, setCollapsed] = React.useState(false);
+const Logo = ({ large = false, inverted = false, collapsible = false, collapsed, onClick }) => {
 
     const classes = useStyles();
 
@@ -60,13 +72,18 @@ const Logo = ({ large = false, inverted = false, collapsible = false }) => {
         inverted ? classes.inverted : classes.notInverted
     );
 
+    const handleClick = () => {
+        onClick(!collapsed);
+    };
+
     const logo = (
         <Box className={className} display="flex" justifyContent="center" >
             <Box>
                 <img src={inverted ? 'inverted-logo.png' : 'blue-logo.png'} alt="Fancy Messenger" />
             </Box>
             <Grow in={!collapsed} unmountOnExit={true}>
-                <Box className={classes.title} display="flex" justifyContent="center" alignItems="center">
+                <Box 
+                className={classes.title} display="flex" justifyContent="center" alignItems="center">
                     <Box>Fancy</Box>
                     <Box>Messenger</Box>
                 </Box>
@@ -76,7 +93,7 @@ const Logo = ({ large = false, inverted = false, collapsible = false }) => {
 
     if (collapsible) {
         return (
-            <Link href="#" color="default" onClick={() => setCollapsed(!collapsed)} underline="none">
+            <Link href="#" color="initial" onClick={handleClick} underline="none">
                 {logo}
             </Link>
         );

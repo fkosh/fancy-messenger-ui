@@ -41,7 +41,7 @@ const App = ({ currentUser }) => {
     return (
         <Box className={classes.root}>
             <ThemeProvider theme={outerTheme}>
-                {currentUser.accessToken ? <Messenger user={currentUser} /> : <Authorization />}
+                {currentUser.accessToken ? <Messenger currentUser={currentUser} /> : <Authorization />}
             </ThemeProvider>
         </Box>
     );
