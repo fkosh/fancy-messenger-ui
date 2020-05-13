@@ -8,8 +8,8 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLogger } from 'redux-logger';
 
-import App from './components1/App';
-import AppSourceLink from './components1/AppSourceLink';
+import App from './components/App';
+import AppSourceLink from './components/AppSourceLink';
 import { saveState, loadState } from './localStorage';
 import reducer from './reducers';
 

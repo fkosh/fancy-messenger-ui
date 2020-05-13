@@ -1,34 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
 
 import Identicon from 'react-identicons';
-
-import { connect } from 'react-redux';
-
-import { fetchContacts } from '../actions';
-
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -62,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
         overflowX: 'hidden',
         width: theme.spacing(7),
         [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(9),
+            width: '70px',
         },
     },
     avatar: {
@@ -71,17 +52,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ContactsList = ({ currentUser, contacts, getContacts, collapsed, onSelectionChange }) => {
+const ContactsList = ({ contacts, getContacts, collapsed, onSelectionChange }) => {
     const classes = useStyles();
-    const theme = useTheme();
 
-    const [hasRendered, setHasRendered] = useState(false);
-    const [selected, setSelected] = useState()
-    useEffect(() => {
-        if (!hasRendered) { getContacts(); }
-
-        setHasRendered(true);
-    });
+    const [selected, setSelected] = useState();
 
     const handleClick = (contactId) => {
         onSelectionChange(contactId);
@@ -113,9 +87,9 @@ const ContactsList = ({ currentUser, contacts, getContacts, collapsed, onSelecti
                 }}
                 variant="persistent"
             >
-                <List style={{ color: '#fff' }}>
-                    {contacts && contacts.items.map((contact) => (
-                        <MenuItem button key={contact.id} onClick={() => handleClick(contact.id)} selected={selected === contact.id}>
+                <List style={{ color: '#fff', padding: '0' }}>
+                    {contacts && contacts.map((contact) => (
+                        <MenuItem style={{ padding: '8px 12px' }} button key={contact.id} onClick={() => handleClick(contact.id)} selected={selected === contact.id}>
                             <ListItemAvatar>
                                 <Avatar className={classes.avatar}>
                                     <Identicon palette={[ "#7E91AF"]} string={contact.username} size={28} />
@@ -130,13 +104,4 @@ const ContactsList = ({ currentUser, contacts, getContacts, collapsed, onSelecti
     );
 };
 
-
-const mapDispatchToProps = dispatch => ({
-    getContacts: () => dispatch(fetchContacts())
-});
-
-const mapStateToProps = state => ({
-    contacts: state.contacts
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactsList);
+export default ContactsList;

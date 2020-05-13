@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import Grow from '@material-ui/core/Grow';
 import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
@@ -14,11 +13,11 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: "'Pacifico', cursive",
         marginLeft: '8px'
     },
-    notInverted: {   
+    notInverted: {
         '& :first-letter': {
             color: '#bd0303',
             fontWeight: 'bold'
-        }, 
+        },
         color: '#212121'
     },
     inverted: {
@@ -26,17 +25,17 @@ const useStyles = makeStyles((theme) => ({
         '& :first-letter': {
             color: '#9FADC3',
             fontWeight: 'bold'
-        }, 
+        },
     },
     normalSize: {
         '& > div': {
-            margin: '0 2px'
+            // margin: '0 2px'
         },
-        fontSize: '20px',
+        fontSize: '18px',
         fontFamily: "'Pacifico', cursive",
         '& img': {
-            margin: '6px 2px 0 0',
-            width: '36px'
+            margin: '0px 2px 0 0',
+            width: '30px'
         }
     },
     largeSize: {
@@ -77,13 +76,10 @@ const Logo = ({ large = false, inverted = false, collapsible = false, collapsed,
     };
 
     const logo = (
-        <Box className={className} display="flex" justifyContent="center" >
-            <Box>
-                <img src={inverted ? 'inverted-logo.png' : 'blue-logo.png'} alt="Fancy Messenger" />
-            </Box>
+        <Box className={className} display="flex" alignItems="center">
+            <img src={inverted ? 'inverted-logo.png' : 'blue-logo.png'} alt="Fancy Messenger" />
             <Grow in={!collapsed} unmountOnExit={true}>
-                <Box 
-                className={classes.title} display="flex" justifyContent="center" alignItems="center">
+                <Box className={classes.title} display="flex" alignItems="center">
                     <Box>Fancy</Box>
                     <Box>Messenger</Box>
                 </Box>

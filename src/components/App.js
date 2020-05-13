@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Box from '@material-ui/core/Box';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { green, yellow } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Authorization from './Authorization';
