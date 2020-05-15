@@ -113,7 +113,7 @@ export function fetchConversationMessages(interlocutorId) {
             {
                 mode: 'cors',
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGExYTgzMi1iMGQ1LTQ2ZmItYjczNC1mMTkyNTZkODE2ZjkiLCJqdGkiOiI0MGRiMzY4MS0yNDQyLTRhYTYtYjlkYS1mMmE5YmVjYWQ5YTYiLCJleHAiOjE1OTAxMjkwOTF9.tAJBP7e7cjbw9YT0iwqYCf2ig5dqFtD9UfbtGfT34X8'
+                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmMjZkN2YzOS1lY2M4LTQ4ZTMtOGMxNC04Mjg4NGE2ZTJjZDgiLCJqdGkiOiI0MDBiYTEyZS0xN2FlLTQwNGUtYTZkMy03ZmI4YWQxOTUxN2EiLCJleHAiOjE1OTAxNzA2ODF9.qDS9K8ESw38jUi9Xt2NjEPW50DmlH7EaiqOcZolve10'
                 }
             }
         ).then(
@@ -155,7 +155,7 @@ export function addConversationMessage(interlocutorId, message) {
                 mode: 'cors',
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGExYTgzMi1iMGQ1LTQ2ZmItYjczNC1mMTkyNTZkODE2ZjkiLCJqdGkiOiI0MGRiMzY4MS0yNDQyLTRhYTYtYjlkYS1mMmE5YmVjYWQ5YTYiLCJleHAiOjE1OTAxMjkwOTF9.tAJBP7e7cjbw9YT0iwqYCf2ig5dqFtD9UfbtGfT34X8',
+                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmMjZkN2YzOS1lY2M4LTQ4ZTMtOGMxNC04Mjg4NGE2ZTJjZDgiLCJqdGkiOiI0MDBiYTEyZS0xN2FlLTQwNGUtYTZkMy03ZmI4YWQxOTUxN2EiLCJleHAiOjE1OTAxNzA2ODF9.qDS9K8ESw38jUi9Xt2NjEPW50DmlH7EaiqOcZolve10',
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
