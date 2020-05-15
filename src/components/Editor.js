@@ -7,14 +7,14 @@ import SendIcon from '@material-ui/icons/Send';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     input: {
         '& ::-webkit-scrollbar': {
             display: 'none'
         },
         padding: '6px 0'
     }
-});
+}));
 
 const Editor = ({ onMessageSend }) => {
     const classes = useStyles();
@@ -49,7 +49,7 @@ const Editor = ({ onMessageSend }) => {
                     />
                 </Box>
                 <Box>
-                    <IconButton color="primary" aria-label="send" size="medium" type="submit"  disabled={!messageText}>
+                    <IconButton aria-label="send" color="primary" size="medium" type="submit" disabled={!messageText}>
                         <SendIcon />
                     </IconButton>
                 </Box>

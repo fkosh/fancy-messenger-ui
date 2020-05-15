@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import {
     RECEIVE_LOGIN_USER,
+    LOGOUT_USER,
 
     REQUEST_CONTACTS,
     RECEIVE_CONTACTS,
@@ -21,6 +22,8 @@ const currentUser = (state = {}, action) => {
                 username: action.user.username,
                 accessToken: action.user.accessToken
             })
+        case LOGOUT_USER:
+            return {}
         default:
             return state
     }

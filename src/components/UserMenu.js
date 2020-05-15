@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import Box from '@material-ui/core/Box';
 import Grow from '@material-ui/core/Grow';
 import Avatar from '@material-ui/core/Avatar';
@@ -9,6 +11,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Identicon from 'react-identicons';
+
+import { logoutUser } from '../actions';
 
 const useStyles = makeStyles({
     avatar: {
@@ -20,7 +24,7 @@ const useStyles = makeStyles({
     }
 });
 
-const UserMenu = ({ currentUser, collapsed = false }) => {
+const UserMenu = ({ currentUser, collapsed = false, logout }) => {
     const classes = useStyles();
 
     return (
@@ -36,7 +40,7 @@ const UserMenu = ({ currentUser, collapsed = false }) => {
                 </Box>
             </Grow>
             <Box>
-                <IconButton aria-label="exit" size="medium">
+                <IconButton aria-label="exit" size="medium" onClick={logout}>
                     <ExitToAppIcon />
                 </IconButton>
             </Box>
@@ -44,4 +48,8 @@ const UserMenu = ({ currentUser, collapsed = false }) => {
     );
 };
 
-export default UserMenu;
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logoutUser())
+});
+
+export default connect(null, mapDispatchToProps)(UserMenu);

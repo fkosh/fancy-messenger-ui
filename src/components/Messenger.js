@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     contact: {
         padding: '16px 12px 10px',
         boxSizing: 'border-box',
-        backgroundColor: '#425E8A',
+        backgroundColor: '#385583',
         color: '#EFF1F5'
     },
     history: {

@@ -30,6 +30,13 @@ export function fetchUserSignUp(userCredentials) {
     }
 }
 
+export const LOGOUT_USER = 'LOGOUT_USER'
+export function logoutUser() {
+    return {
+        type: LOGOUT_USER
+    }
+}
+
 export function fetchUserSignIn(userCredentials) {
     return function (dispatch) {
 
