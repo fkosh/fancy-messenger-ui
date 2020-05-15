@@ -2,9 +2,14 @@ import React from 'react';
 
 import Box from '@material-ui/core/Box';
 
-const History = () => (
+function Message({message}) {
+
+    return <Box>{message.text}</Box>;
+};
+
+const History = ({ messages }) => (
     <Box>
-        123123
+        {messages && messages.map((message) => <Message key={message.id} message={message} />)}
     </Box>
 );
 

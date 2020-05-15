@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Box from '@material-ui/core/Box';
+import { Typography } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -15,7 +16,7 @@ import Contact from './Contact';
 import History from './History';
 import Editor from './Editor';
 
-import { fetchContacts } from '../actions';
+import { fetchContacts, fetchConversationMessages, addConversationMessage } from '../actions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
         padding: '4px 4px 4px 12px',
         backgroundColor: '#2E4C7D'
     },
+    splashScreen: {
+        backgroundColor: '#DFE4EB',
+        color: '#9FADC3'
+    },
     contact: {
         padding: '16px 12px 10px',
         boxSizing: 'border-box',
@@ -49,17 +54,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Messenger = ({ currentUser, contacts = [], getContacts }) => {
+const Messenger = ({ currentUser, contacts = [], conversation, selectedContact, getContacts, getConversation, addConversationMessage }) => {
     const classes = useStyles();
 
     const [collapsed, setCollapsed] = useState(false);
-    const [selectedContact, setSelectedContact] = useState();
 
-    useEffect(() => { getContacts(); }, [getContacts]);
-
-    const onContactSelectionChange = contactId => setSelectedContact(
-        contacts.find(contact => contact.id === contactId)
-    );
+    useEffect(() => { getContacts(); }, [ getContacts ]);
 
     return (
         <Box className={classes.root} display="flex">
@@ -71,7 +71,7 @@ const Messenger = ({ currentUser, contacts = [], getContacts }) => {
                     <ContactsList
                         contacts={contacts}
                         collapsed={collapsed}
-                        onSelectionChange={onContactSelectionChange}
+                        onSelectionChange={getConversation}
                     />
                 </Box>
                 <Box className={classes.userMenu}>
@@ -79,30 +79,43 @@ const Messenger = ({ currentUser, contacts = [], getContacts }) => {
                 </Box>
             </Box>
             <Box flexGrow={1} display="flex" flexDirection="column">
-                {selectedContact && (
-                    <>
-                        <Box className={classes.contact}>
-                            <Contact contact={selectedContact} />
+                {!conversation.interlocutorId
+                    ? (
+                        <Box className={classes.splashScreen} flexGrow={1} display="flex" justifyContent="center" alignItems="center">
+                            <Typography>
+                                Select the person on the left
+                            </Typography>
                         </Box>
-                        <Box className={classes.history} flexGrow={1}>
-                            <History />
-                        </Box>
-                        <Box className={classes.editor}>
-                            <Editor />
-                        </Box>
-                    </>
-                )}
+                    ) : (
+                        <>
+                            <Box className={classes.contact}>
+                                <Contact contact={selectedContact} />
+                            </Box>
+                            <Box className={classes.history} flexGrow={1}>
+                                <History messages={conversation.messages.items} />
+                            </Box>
+                            <Box className={classes.editor}>
+                                <Editor onMessageSend={message => addConversationMessage(selectedContact.id, message)} />
+                            </Box>
+                        </>
+                    )}
             </Box>
         </Box>
     );
 };
 
 const mapDispatchToProps = dispatch => ({
-    getContacts: () => dispatch(fetchContacts())
+    getContacts: () => dispatch(fetchContacts()),
+    getConversation: contactId => dispatch(fetchConversationMessages(contactId)),
+    addConversationMessage: (contactId, message) => dispatch(addConversationMessage(contactId, message))
 });
 
 const mapStateToProps = state => ({
-    contacts: state.contacts.items
+    contacts: state.contacts.items,
+    conversation: state.conversation,
+    selectedContact: state.contacts.items.find(
+        contact => contact.id === state.conversation.interlocutorId
+    )
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Messenger);

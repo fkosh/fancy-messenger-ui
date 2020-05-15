@@ -78,7 +78,7 @@ export function fetchContacts() {
             {
                 mode: 'cors',
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1MWFjOWE4Zi04MzAxLTRlZTgtYTg2My0zMzdlMzM3MjVlN2UiLCJqdGkiOiJlYjQ2NDE0YS1iOTBjLTQ3OTItYmNmNS04ZjQzZmVkNmYwY2QiLCJleHAiOjE1ODk0MDIzNTF9.HxDRdmZXukXJ5HTurkrBkHsvHbVw5lhY-G-IwOSO0pU'
+                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGExYTgzMi1iMGQ1LTQ2ZmItYjczNC1mMTkyNTZkODE2ZjkiLCJqdGkiOiI0MGRiMzY4MS0yNDQyLTRhYTYtYjlkYS1mMmE5YmVjYWQ5YTYiLCJleHAiOjE1OTAxMjkwOTF9.tAJBP7e7cjbw9YT0iwqYCf2ig5dqFtD9UfbtGfT34X8'
                 }
             }
         ).then(
@@ -88,18 +88,11 @@ export function fetchContacts() {
     }
 }
 
-export const SELECT_CONVERSATION = 'SELECT_CONVERSATION'
-export function selectConversation(interlocutorId) {
-    return {
-        type: SELECT_CONVERSATION,
-        interlocutorId
-    }
-}
-
 export const REQUEST_CONVERSATION_MESSAGES = 'REQUEST_CONVERSATION_MESSAGES'
-function requestConversationMessages() {
+function requestConversationMessages(interlocutorId) {
     return {
-        type: REQUEST_CONVERSATION_MESSAGES
+        type: REQUEST_CONVERSATION_MESSAGES,
+        interlocutorId
     }
 }
 
@@ -120,12 +113,59 @@ export function fetchConversationMessages(interlocutorId) {
             {
                 mode: 'cors',
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1MWFjOWE4Zi04MzAxLTRlZTgtYTg2My0zMzdlMzM3MjVlN2UiLCJqdGkiOiJlYjQ2NDE0YS1iOTBjLTQ3OTItYmNmNS04ZjQzZmVkNmYwY2QiLCJleHAiOjE1ODk0MDIzNTF9.HxDRdmZXukXJ5HTurkrBkHsvHbVw5lhY-G-IwOSO0pU'
+                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGExYTgzMi1iMGQ1LTQ2ZmItYjczNC1mMTkyNTZkODE2ZjkiLCJqdGkiOiI0MGRiMzY4MS0yNDQyLTRhYTYtYjlkYS1mMmE5YmVjYWQ5YTYiLCJleHAiOjE1OTAxMjkwOTF9.tAJBP7e7cjbw9YT0iwqYCf2ig5dqFtD9UfbtGfT34X8'
                 }
             }
         ).then(
-            response => response.json(),
+            response => {
+                if (response.status === 204) return [];
+
+                return response.json();
+            },
             error => console.log('An error occurred.', error)
         ).then(json => dispatch(receiveConversationMessages(json)))
+    }
+}
+
+export const REQUEST_CONVERSATION_MESSAGES_ADD = 'REQUEST_CONVERSATION_MESSAGES_ADD'
+function requestConversationMessageAdd(message) {
+    return {
+        type: REQUEST_CONVERSATION_MESSAGES_ADD,
+        message
+    }
+}
+
+export const RECEIVE_CONVERSATION_MESSAGES_ADD = 'RECEIVE_CONVERSATION_MESSAGES_ADD'
+function receiveConversationMessageAdd(message) {
+    return {
+        type: RECEIVE_CONVERSATION_MESSAGES_ADD,
+        message
+    }
+}
+
+export function addConversationMessage(interlocutorId, message) {
+    return function (dispatch) {
+        dispatch(requestConversationMessageAdd(message))
+
+        console.log('add',message );
+
+        return fetch(
+            `https://localhost:5001/api/users/${interlocutorId}/conversation/messages`,
+            {
+                mode: 'cors',
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGExYTgzMi1iMGQ1LTQ2ZmItYjczNC1mMTkyNTZkODE2ZjkiLCJqdGkiOiI0MGRiMzY4MS0yNDQyLTRhYTYtYjlkYS1mMmE5YmVjYWQ5YTYiLCJleHAiOjE1OTAxMjkwOTF9.tAJBP7e7cjbw9YT0iwqYCf2ig5dqFtD9UfbtGfT34X8',
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    text: message
+                })
+            }
+        ).then(
+            response => {},
+            error => console.log('An error occurred.', error)
+        ).then(json => dispatch(receiveConversationMessageAdd(message)))
     }
 }

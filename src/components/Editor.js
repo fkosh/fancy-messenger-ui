@@ -21,7 +21,7 @@ const Editor = ({ onMessageSend }) => {
 
     const [messageText, setMessageText] = useState('');
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         const message = messageText;
@@ -49,7 +49,7 @@ const Editor = ({ onMessageSend }) => {
                     />
                 </Box>
                 <Box>
-                    <IconButton color="primary" aria-label="send" size="medium" disabled={!messageText}>
+                    <IconButton color="primary" aria-label="send" size="medium" type="submit"  disabled={!messageText}>
                         <SendIcon />
                     </IconButton>
                 </Box>

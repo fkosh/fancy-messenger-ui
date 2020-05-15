@@ -92,7 +92,7 @@ const ContactsList = ({ contacts, getContacts, collapsed, onSelectionChange }) =
                         <MenuItem style={{ padding: '8px 12px' }} button key={contact.id} onClick={() => handleClick(contact.id)} selected={selected === contact.id}>
                             <ListItemAvatar>
                                 <Avatar className={classes.avatar}>
-                                    <Identicon palette={[ "#7E91AF"]} string={contact.username} size={28} />
+                                    <Identicon palette={[ "#81c784"]} string={contact.username} size={28} />
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText primary={contact.username} />
