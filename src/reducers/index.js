@@ -67,7 +67,7 @@ const conversation = (
         case RECEIVE_CONVERSATION_MESSAGES_ADD:
             return Object.assign({}, state, {
                 messages: {
-                    items: [...state.messages.items, { text: action.message } ]
+                    items: [...state.messages.items, action.message ]
                 }
             })
         default:

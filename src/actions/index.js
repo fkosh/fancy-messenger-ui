@@ -85,7 +85,7 @@ export function fetchContacts() {
             {
                 mode: 'cors',
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGExYTgzMi1iMGQ1LTQ2ZmItYjczNC1mMTkyNTZkODE2ZjkiLCJqdGkiOiI0MGRiMzY4MS0yNDQyLTRhYTYtYjlkYS1mMmE5YmVjYWQ5YTYiLCJleHAiOjE1OTAxMjkwOTF9.tAJBP7e7cjbw9YT0iwqYCf2ig5dqFtD9UfbtGfT34X8'
+                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMzgxMTFmOS0zYWQzLTQwZDgtYjk3YS1lZDQwMGQ4ZmE3OTMiLCJqdGkiOiI5NTg2YWFjYS0zY2JiLTQyMmMtYjFmNC00ZDA4NmJkM2ZhZWEiLCJleHAiOjE1OTAzNDI1MTh9.qCF4ipYuIb24wpk3OATHsNI0_kNzriny_1bumn4aa6I'
                 }
             }
         ).then(
@@ -120,7 +120,7 @@ export function fetchConversationMessages(interlocutorId) {
             {
                 mode: 'cors',
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmMjZkN2YzOS1lY2M4LTQ4ZTMtOGMxNC04Mjg4NGE2ZTJjZDgiLCJqdGkiOiI0MDBiYTEyZS0xN2FlLTQwNGUtYTZkMy03ZmI4YWQxOTUxN2EiLCJleHAiOjE1OTAxNzA2ODF9.qDS9K8ESw38jUi9Xt2NjEPW50DmlH7EaiqOcZolve10'
+                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMzgxMTFmOS0zYWQzLTQwZDgtYjk3YS1lZDQwMGQ4ZmE3OTMiLCJqdGkiOiI5NTg2YWFjYS0zY2JiLTQyMmMtYjFmNC00ZDA4NmJkM2ZhZWEiLCJleHAiOjE1OTAzNDI1MTh9.qCF4ipYuIb24wpk3OATHsNI0_kNzriny_1bumn4aa6I'
                 }
             }
         ).then(
@@ -134,14 +134,6 @@ export function fetchConversationMessages(interlocutorId) {
     }
 }
 
-export const REQUEST_CONVERSATION_MESSAGES_ADD = 'REQUEST_CONVERSATION_MESSAGES_ADD'
-function requestConversationMessageAdd(message) {
-    return {
-        type: REQUEST_CONVERSATION_MESSAGES_ADD,
-        message
-    }
-}
-
 export const RECEIVE_CONVERSATION_MESSAGES_ADD = 'RECEIVE_CONVERSATION_MESSAGES_ADD'
 function receiveConversationMessageAdd(message) {
     return {
@@ -152,17 +144,13 @@ function receiveConversationMessageAdd(message) {
 
 export function addConversationMessage(interlocutorId, message) {
     return function (dispatch) {
-        dispatch(requestConversationMessageAdd(message))
-
-        console.log('add',message );
-
         return fetch(
             `https://localhost:5001/api/users/${interlocutorId}/conversation/messages`,
             {
                 mode: 'cors',
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmMjZkN2YzOS1lY2M4LTQ4ZTMtOGMxNC04Mjg4NGE2ZTJjZDgiLCJqdGkiOiI0MDBiYTEyZS0xN2FlLTQwNGUtYTZkMy03ZmI4YWQxOTUxN2EiLCJleHAiOjE1OTAxNzA2ODF9.qDS9K8ESw38jUi9Xt2NjEPW50DmlH7EaiqOcZolve10',
+                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMzgxMTFmOS0zYWQzLTQwZDgtYjk3YS1lZDQwMGQ4ZmE3OTMiLCJqdGkiOiI5NTg2YWFjYS0zY2JiLTQyMmMtYjFmNC00ZDA4NmJkM2ZhZWEiLCJleHAiOjE1OTAzNDI1MTh9.qCF4ipYuIb24wpk3OATHsNI0_kNzriny_1bumn4aa6I',
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
@@ -171,8 +159,8 @@ export function addConversationMessage(interlocutorId, message) {
                 })
             }
         ).then(
-            response => {},
+            response => response.json(),
             error => console.log('An error occurred.', error)
-        ).then(json => dispatch(receiveConversationMessageAdd(message)))
+        ).then(json => dispatch(receiveConversationMessageAdd(json)))
     }
 }

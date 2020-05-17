@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#0E3169'
     },
     contacts: {
-        backgroundColor: '#1E3F73'
+        backgroundColor: '#1E3F73',
+        maxHeight: '388px'
     },
     userMenu: {
         padding: '4px 4px 4px 12px',
@@ -46,7 +47,13 @@ const useStyles = makeStyles((theme) => ({
     },
     history: {
         padding: '12px',
-        backgroundColor: '#DFE4EB'
+        backgroundColor: '#DFE4EB',
+        overflow: 'auto',
+      //  maxHeight: '388px',
+        boxSizing: 'border-box',
+        '&::-webkit-scrollbar': {
+            display: 'none'
+        }
     },
     editor: {
         padding: '4px 4px 4px 12px',
