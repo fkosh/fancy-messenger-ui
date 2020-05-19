@@ -1,3 +1,5 @@
+import { headers } from '../_helpers';
+
 export const RECEIVE_LOGIN_USER = 'RECEIVE_LOGIN_USER'
 function receiveLoginUser(json) {
     return {
@@ -10,14 +12,11 @@ export function fetchUserSignUp(userCredentials) {
     return function (dispatch) {
 
         return fetch(
-            `https://localhost:5001/api/sign-up`,
+            `${process.env.REACT_APP_API_ENDPOINT}/sign-up`,
             {
                 method: 'POST',
                 mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
+                headers: headers(),
                 body: JSON.stringify({
                     username: userCredentials.username,
                     password: userCredentials.password
@@ -41,14 +40,11 @@ export function fetchUserSignIn(userCredentials) {
     return function (dispatch) {
 
         return fetch(
-            `https://localhost:5001/api/sign-in`,
+            `${process.env.REACT_APP_API_ENDPOINT}/sign-in`,
             {
                 method: 'POST',
                 mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
+                headers: headers(),
                 body: JSON.stringify({
                     username: userCredentials.username,
                     password: userCredentials.password
@@ -81,12 +77,10 @@ export function fetchContacts() {
         dispatch(requestContacts())
 
         return fetch(
-            `https://localhost:5001/api/users`,
+            `${process.env.REACT_APP_API_ENDPOINT}/users`,
             {
                 mode: 'cors',
-                headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMzgxMTFmOS0zYWQzLTQwZDgtYjk3YS1lZDQwMGQ4ZmE3OTMiLCJqdGkiOiI5NTg2YWFjYS0zY2JiLTQyMmMtYjFmNC00ZDA4NmJkM2ZhZWEiLCJleHAiOjE1OTAzNDI1MTh9.qCF4ipYuIb24wpk3OATHsNI0_kNzriny_1bumn4aa6I'
-                }
+                headers: headers()
             }
         ).then(
             response => response.json(),
@@ -116,12 +110,10 @@ export function fetchConversationMessages(interlocutorId) {
         dispatch(requestConversationMessages(interlocutorId))
 
         return fetch(
-            `https://localhost:5001/api/users/${interlocutorId}/conversation?skip=0&take=100`,
+            `${process.env.REACT_APP_API_ENDPOINT}/users/${interlocutorId}/conversation?skip=0&take=100`,
             {
                 mode: 'cors',
-                headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMzgxMTFmOS0zYWQzLTQwZDgtYjk3YS1lZDQwMGQ4ZmE3OTMiLCJqdGkiOiI5NTg2YWFjYS0zY2JiLTQyMmMtYjFmNC00ZDA4NmJkM2ZhZWEiLCJleHAiOjE1OTAzNDI1MTh9.qCF4ipYuIb24wpk3OATHsNI0_kNzriny_1bumn4aa6I'
-                }
+                headers: headers()
             }
         ).then(
             response => {
@@ -145,15 +137,11 @@ function receiveConversationMessageAdd(message) {
 export function addConversationMessage(interlocutorId, message) {
     return function (dispatch) {
         return fetch(
-            `https://localhost:5001/api/users/${interlocutorId}/conversation/messages`,
+            `${process.env.REACT_APP_API_ENDPOINT}/users/${interlocutorId}/conversation/messages`,
             {
                 mode: 'cors',
                 method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMzgxMTFmOS0zYWQzLTQwZDgtYjk3YS1lZDQwMGQ4ZmE3OTMiLCJqdGkiOiI5NTg2YWFjYS0zY2JiLTQyMmMtYjFmNC00ZDA4NmJkM2ZhZWEiLCJleHAiOjE1OTAzNDI1MTh9.qCF4ipYuIb24wpk3OATHsNI0_kNzriny_1bumn4aa6I',
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
+                headers: headers(),
                 body: JSON.stringify({
                     text: message
                 })

@@ -14,15 +14,20 @@ import {
     RECEIVE_CONVERSATION_MESSAGES_ADD
 } from '../actions'
 
-const currentUser = (state = {}, action) => {
+let user = JSON.parse(localStorage.getItem('currentUser'));
+const initialState = user ? user : {};
+
+const currentUser = (state =  initialState, action) => {
     switch (action.type) {
         case RECEIVE_LOGIN_USER:
+            localStorage.setItem('currentUser', JSON.stringify(action.user));
             return Object.assign({}, state, {
                 id: action.user.id,
                 username: action.user.username,
                 accessToken: action.user.accessToken
             })
         case LOGOUT_USER:
+            localStorage.removeItem('currentUser');
             return {}
         default:
             return state
